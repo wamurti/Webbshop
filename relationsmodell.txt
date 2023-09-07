@@ -1,0 +1,24 @@
+kund(id,förnamn,efternamn,adress), id PK
+kategori(Id,namn), id PK namn uniqe
+produktNamn(id,namn) id PK namn uniqe
+produktStorlek(id,namn) id PK namn uniqe
+produktFärg(id,namn) id PK namn uniqe
+produktMärke(id,namn) id PK namn uniqe
+produktBeroenden(id,produktNamnId,produktStorlekId,produktFärgId,produktMärkeId) id PK
+produkt(id,lagerstatus,pris,produktBeroendeId), id PK
+beställning(id,datum,kundId), id PK
+produktBeställning(id,antal,beställningsId,produktId), id PK
+produktKategori(id,kategoriId,produktId) id PK
+
+
+
+produktBeroenden(produktNamnId) refererar produktNamn(id)
+produktBeroenden(produktStorlekId) refererar produktStorlek(id)
+produktBeroenden(produktFärgId) refererar produktFärg(id)
+produktBeroenden(produktMärkeId) refererar produktMärke(id)
+produkt(produktBeroendeId) refererar produktBeroenden(id)
+beställning(kundId) refererar kund(Id)
+produktBeställning(beställningsId) refererar beställning(id)
+produktBeställning(produktId) refererar produkt(Id)
+produktKategori(kategoriId) refererar kategori(id)
+produktKategori(produktId) refererar produkt(id)
